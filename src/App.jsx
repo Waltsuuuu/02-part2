@@ -1,14 +1,44 @@
-import PropTypes from 'prop-types';
+import { useState } from 'react'
 
-const App = (props) => {
-  const {counter} = props
+const Display = (props) => {
   return (
-    <div>{counter}</div>
+    <div>{props.counter}</div>
   )
 }
 
-App.propTypes = {
-  counter: PropTypes.number
+const Button = (props) => {
+  return (
+    <button onClick={props.handleClick}>
+    {props.text}
+    </button>
+  )
+}
+
+const App = () => {
+
+  const [ counter, setCounter ] = useState(0)
+
+  const increaseByOne = () => setCounter(counter + 1)
+  const decreaseByOne = () => setCounter(counter - 1)
+  const setToZero = () => setCounter(0)
+
+  return (
+    <div>
+    <Display counter={counter}/>
+    <Button
+      handleClick={increaseByOne}
+      text='Plus'
+    />
+    <Button 
+      handleClick={setToZero} 
+      text='Zero'
+    />
+    <Button 
+      handleClick={decreaseByOne} 
+      text='Minus'
+    />
+    </div>
+  )
 }
 
 export default App
