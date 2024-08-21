@@ -1,18 +1,22 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const Display = (props) => {
-  return (
-    <div>{props.counter}</div>
-  )
+const Display = ({ counter }) => <div>{counter}</div>
+
+Display.propTypes = {
+  counter: PropTypes.number
 }
 
-const Button = (props) => {
-  return (
+const Button = ({ handleClick, text}) => (
     <button 
-    onClick={props.handleClick}>
-    {props.text}
+    onClick={handleClick}>
+    {text}
     </button>
   )
+
+Button.propTypes = {
+  handleClick: PropTypes.func,
+  text: PropTypes.string
 }
 
 const App = () => {
